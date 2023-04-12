@@ -1,4 +1,5 @@
 <?php
+require('../conf/conf_site.php');
 if (isset($_SESSION['id'])) {
     $requser = $bdd->prepare("SELECT * FROM users WHERE id = ?");
     $requser->execute(array($_SESSION['id']));
