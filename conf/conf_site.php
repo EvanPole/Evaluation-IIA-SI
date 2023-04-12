@@ -4,6 +4,7 @@
 // Developpeur:Levilloux      //
 ////////////////////////////////
 $version = "v0.0.1";
+$captcha = "secret_key";
 ////////////////////////
 // Database-Config    //
 ////////////////////////
@@ -11,7 +12,7 @@ $version = "v0.0.1";
 $db = "authentification";
 $dbuser = "";
 $dbpass = "";
-$ip = "";
+$ip = "127.0.0.1";
 ///////////////////////
 // DataBase PDO      //
 ///////////////////////
