@@ -2,6 +2,7 @@
 session_start();
 require("../conf/conf_site.php");
 require('../modules/verif_login.php');
+$erreur = '';
 if ($_SESSION["permission"] != 1) {
 
   header("location:../login.php");
@@ -19,12 +20,12 @@ if (!empty($_POST['editor']) && !empty($_FILES['image'])) {
     if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
       $article = $bdd->prepare("INSERT INTO articles(contenue,img) VALUES (?, ?)");
       $article->execute(array($content, $filename));
-      echo 'Le fichier a été uploadé avec succès.';
+      header("Location: ../public/blog.php");
     } else {
-      echo 'Une erreur est survenue lors de l\'upload du fichier.';
+      $erreur =  'Une erreur est survenue lors de l\'upload du fichier.';
     }
   } else {
-    echo 'Le fichier doit être une image (jpg, jpeg, png ou gif).';
+    $erreur =  'Le fichier doit être une image (jpg, jpeg, png ou gif).';
   }
 }
 
@@ -40,8 +41,15 @@ if (!empty($_POST['editor']) && !empty($_FILES['image'])) {
 </head>
 
 <body>
+  <ul class="navbar">
+    <li><a href="../public/blog.php">Blog.com</a></li>
+    <li style="float:right"><a class="active" href="../login.php">Login</a></li>
+    <li style="float:right"><a class="active" href="../logout.php">Se déconnecter</a></li>
+  </ul>
+
+
   <h2 style="text-align: center;">Ajouter un article</h2>
-  <a href="../logout.php">Se déconnecter</a>
+  <?= $erreur ?>
   <div class="container-overview">
     <form method="POST" enctype="multipart/form-data">
       <textarea name="editor" id="editor"></textarea>
@@ -51,11 +59,14 @@ if (!empty($_POST['editor']) && !empty($_FILES['image'])) {
   </div>
 
 
+  <h2 style="text-align: center;">Vos articles</h2>
   <?php foreach ($articles as $article) : ?>
     <div class="container-blog">
       <?php echo $article['contenue']; ?>
       <img style="max-width: 500px;" src="../public/img/<?= $article['img'] ?>" alt="<?= $article['contenue'] ?>">
-      <a href="s">Edit</a>
+      <hr>
+      <a href="s">Editer</a>
+      <a href="../modules/edit.php?rm=<?= $article['id'] ?>">Supprimer</a>
     </div>
   <?php endforeach; ?>
   <script>
