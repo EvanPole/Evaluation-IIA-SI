@@ -8,6 +8,7 @@ Version de HTML : 5
 Version de MySQL : 8.0.31 
 
 Video d'installation : https://drive.google.com/file/d/1ccTeEsG3dlebEvUDYojUNf9mtdXr6FAI/view?usp=share_link
+
 —————————————————————————————————————
 
 Pour le bon fonctionnement du projet, vous devez vous munir d’un ordinateur ayant Wampserver et MySQL 8.0.31
@@ -29,6 +30,10 @@ Prenez tous les fichiers restants.
 Mettez le à la racine de votre serveur Wamp.
 Puis rendez-vous dans le fichier de configuration (/conf/conf_site.php).
 Modifier la ligne 11, 12, 13, 14 avec vos informations.
+
+Et si vous voulez activer le captcha les lignes 7,8 suivez la documentation pour avoir une clef d'api :
+https://www.hcaptcha.com/
+https://docs.hcaptcha.com/
 
 —————————————————————————————————————
 
