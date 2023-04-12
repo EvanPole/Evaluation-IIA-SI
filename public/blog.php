@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("../conf/conf_site.php");
 
 $articleslist = $bdd->query('SELECT * FROM articles');
@@ -19,7 +20,19 @@ $articles = $articleslist->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <ul class="navbar">
         <li><a href="#home">Blog.com</a></li>
-        <li style="float:right"><a class="active" href="../login.php">Login</a></li>
+        <?php
+        if (isset($_SESSION["permission"])) {
+            if ($_SESSION["permission"] == 1) {
+                echo '<li style="float:right"><a class="active" href="../admin/overview.php">Admin Page</a></li>';
+            }
+            echo '<li style="float:right"><a class="active" href="../logout.php">Déconnection</a></li>';
+        } else {
+
+            echo '<li style="float:right"><a class="active" href="../login.php">Login</a></li>';
+        }
+
+        ?>
+
     </ul>
 
 
@@ -33,11 +46,11 @@ $articles = $articleslist->fetchAll(PDO::FETCH_ASSOC);
     </head>
 
     <body>
-        <h1>Tous les articles</h1>
+        <h1 style="text-align: center;">Tous les articles</h1>
         <?php foreach ($articles as $article) : ?>
             <div class="container-blog">
                 <?php echo $article['contenue']; ?>
-                <img style="max-width: 500px;" src="img/<?= $article['img'] ?>" alt="<?= $article['contenue']?>">
+                <img style="max-width: 500px;" src="img/<?= $article['img'] ?>" alt="<?= $article['contenue'] ?>">
             </div>
         <?php endforeach; ?>
     </body>
