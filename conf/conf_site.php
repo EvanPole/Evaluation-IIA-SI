@@ -5,12 +5,13 @@
 ////////////////////////////////
 $version = "v0.0.1";
 $captcha = "secret_key";
+$captcha_active = false;
 ////////////////////////
 // Database-Config    //
 ////////////////////////
 // || DataBase ||
 $db = "authentification";
-$dbuser = "";
+$dbuser = "root";
 $dbpass = "";
 $ip = "127.0.0.1";
 ///////////////////////

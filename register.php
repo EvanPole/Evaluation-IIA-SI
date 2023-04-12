@@ -3,12 +3,12 @@ session_start();
 require("./conf/conf_site.php");
 $erreur = '';
 
-if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-name"]) && !empty($_POST["mail"]) && !empty($_POST['h-captcha-response'])) {
+if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-name"]) && !empty($_POST["mail"])) {
 
     $response = $_POST['h-captcha-response'];
     $verify = file_get_contents("https://hcaptcha.com/siteverify?secret=VOTRE_SECRETKEY&response={$response}");
     $captcha_success = json_decode($verify);
-    if ($captcha_success->success == false) {
+    if ($captcha_success->success == false || $captcha_active == true) {
         $erreur = 'Captcha invalide !';
     } else {
 
@@ -38,7 +38,7 @@ if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-nam
         }
     }
 } else {
-    $erreur = 'Merci de remplir tous les champs et valider le captcha !';
+    $erreur = 'Merci de remplir tous les champs';
 }
 
 ?>
@@ -64,7 +64,9 @@ if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-nam
             <input type="email" placeholder="Mail" name="mail">
             <input type="password" placeholder="Mot de passe" name="password">
             <input type="password" placeholder="Confirmation mot de passe" name="password2">
+            <?php if($captcha_active == true){?>
             <div class="h-captcha" data-sitekey="<?=$captcha?>"></div>
+            <?php }?>
             <button type="submit">Envoyer</button>
             <p style="color: red;"><?= $erreur ?></p>
             <a href="login.php">Login</a>
