@@ -21,7 +21,7 @@ if (isset($_GET["edit"])) {
       $filename = uniqid() . '.' . $file_extension;
       $upload_path = $upload_dir . $filename;
       if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
-        $article = $bdd->prepare("UPDATE articles SET contenu = ?, img = ? WHERE id = ?");
+        $article = $bdd->prepare("UPDATE articles SET contenue = ?, img = ? WHERE id = ?");
         $article->execute(array($content, $filename, $id_post));
         header("Location: ../public/blog.php");
       } else {
