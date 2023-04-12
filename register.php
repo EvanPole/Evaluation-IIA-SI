@@ -13,7 +13,7 @@ $erreur = '';
         $info_users = $bdd->prepare("SELECT * FROM users WHERE adresse_mail = ?");
         $info_users->execute(array($mail));
         if ($info_users->rowCount() == 0) {
-            $register = $bdd->prepare("INSERT INTO users(adresse_mail,nom,prenom,mdp,`permission`) VALUE(?,?,?,?,1)");
+            $register = $bdd->prepare("INSERT INTO users(adresse_mail,nom,prenom,mdp,`permission`) VALUE(?,?,?,?,0)");
             $register->execute(array($mail, $name, $fname, $password));
         } else {
             $erreur = 'L\'utilisateur existe déjà !';
