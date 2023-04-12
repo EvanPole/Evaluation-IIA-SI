@@ -25,7 +25,7 @@ $articles = $articleslist->fetchAll(PDO::FETCH_ASSOC);
             if ($_SESSION["permission"] == 1) {
                 echo '<li style="float:right"><a class="active" href="../admin/overview.php">Admin Page</a></li>';
             }
-            echo '<li style="float:right"><a class="active" href="../logout.php">Déconnection</a></li>';
+            echo '<li style="float:right"><a class="active" href="../logout.php">Déconnexion</a></li>';
         } else {
 
             echo '<li style="float:right"><a class="active" href="../login.php">Login</a></li>';
