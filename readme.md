@@ -7,6 +7,7 @@ Version de PHP : 8.2
 Version de HTML : 5
 Version de MySQL : 8.0.31 
 
+Video d'installation : https://drive.google.com/file/d/1ccTeEsG3dlebEvUDYojUNf9mtdXr6FAI/view?usp=share_link
 —————————————————————————————————————
 
 Pour le bon fonctionnement du projet, vous devez vous munir d’un ordinateur ayant Wampserver et MySQL 8.0.31
