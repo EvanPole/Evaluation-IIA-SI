@@ -59,9 +59,9 @@ if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-nam
     <form method="post">
         <div class="main-container">
             <h2>Inscription</h2>
-            <input type="text" placeholder="Nom" name="name">
-            <input type="text" placeholder="Prénom" name="f-name">
-            <input type="email" placeholder="Mail" name="mail">
+            <input type="text" placeholder="Nom" name="name" value="<?php if(isset($_POST["mail"])){echo$_POST["name"];}?>">
+            <input type="text" placeholder="Prénom" name="f-name" value="<?php if(isset($_POST["mail"])){echo$_POST["f-name"];}?>">
+            <input type="email" placeholder="Mail" name="mail" value="<?php if(isset($_POST["mail"])){echo$_POST["mail"];}?>">
             <input type="password" placeholder="Mot de passe" name="password">
             <input type="password" placeholder="Confirmation mot de passe" name="password2">
             <?php if($captcha_active == true){?>

@@ -56,7 +56,7 @@ if ($_SESSION['tentative'] <= 15) {
     <div class="main-container">
         <form method="post">
             <h2>Login</h2>
-            <input type="text" placeholder="mail" name="mail">
+            <input type="text" placeholder="mail" name="mail" value="<?php if(isset($_POST["mail"])){echo$_POST["mail"];}?>">
             <input type="password" placeholder="Mot de passe" name="mdp">
             <button type="submit">Continuer</button>
             <p style="color: red;"><?= $erreur ?></p>
