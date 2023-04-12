@@ -18,6 +18,7 @@ if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-nam
         if ($info_users->rowCount() == 0) {
             $register = $bdd->prepare("INSERT INTO users(adresse_mail,nom,prenom,mdp) VALUE(?,?,?,?)");
             $register->execute(array($mail, $name, $fname, $password));
+            header("location:login.php");
         } else {
             $erreur = 'L\'utilisateur existe déjà !';
         }
