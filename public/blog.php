@@ -52,7 +52,12 @@ $articles = $articleslist->fetchAll(PDO::FETCH_ASSOC);
                 <?php echo $article['contenue']; ?>
                 <img style="max-width: 500px;" src="img/<?= $article['img'] ?>" alt="<?= $article['contenue'] ?>">
             </div>
-        <?php endforeach; ?>
+        <?php endforeach;
+        if(count($articles) == 0){
+            echo'<p style="text-align: center;">Vous pouvez ajouter des des articles sur le <a href="../admin/overview.php">panel administrateur<a/></p>';
+        }
+        ?>
+        
     </body>
 
     </html>
