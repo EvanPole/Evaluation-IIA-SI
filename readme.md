@@ -36,7 +36,3 @@ https://www.hcaptcha.com/
 https://docs.hcaptcha.com/
 
 —————————————————————————————————————
-
-Pour vous authentifiez, utiliser les mot de passe admin :
-user : admin
-mot de passe : changeme
