@@ -2,25 +2,29 @@
 session_start();
 require("./conf/conf_site.php");
 $erreur = '';
-if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-name"]) && !empty($_POST["mail"])) {
-    $name = $_POST["name"];
-    $fname = $_POST["f-name"];
-    $password = $_POST["password"];
-    $mail = $_POST["mail"];
-    $password = hash('sha256', $_POST["password"]);
+$tentative += $tentative;
+if ($tentative > 15) {
+    if (!empty($_POST["name"]) && !empty($_POST["password"]) && !empty($_POST["f-name"]) && !empty($_POST["mail"])) {
+        $name = $_POST["name"];
+        $fname = $_POST["f-name"];
+        $password = $_POST["password"];
+        $mail = $_POST["mail"];
+        $password = hash('sha256', $_POST["password"]);
 
-    $info_users = $bdd->prepare("SELECT * FROM users WHERE adresse_mail = ?");
-    $info_users->execute(array($name));
-    if ($info_users->rowCount() > 0) {
-        $register = $bdd->prepare("INSERT INTO users(adresse_mail,nom,prenom,mdp) VALUE(?,?,?,?)");
-        $register->execute(array($mail, $name, $fname, $password));
+        $info_users = $bdd->prepare("SELECT * FROM users WHERE adresse_mail = ?");
+        $info_users->execute(array($mail));
+        if ($info_users->rowCount() == 0) {
+            $register = $bdd->prepare("INSERT INTO users(adresse_mail,nom,prenom,mdp,`permission`) VALUE(?,?,?,?,1)");
+            $register->execute(array($mail, $name, $fname, $password));
+        } else {
+            $erreur = 'L\'utilisateur existe déja !';
+        }
     } else {
-        $erreur = 'L\'utilisateur existe déja !';
+        $erreur = 'merci de remplire tous les champs';
     }
 } else {
-    $erreur = 'merci de remplire tous les champs';
+    $erreur = 'vous avez ete bloquer vous avez fais plus de 15 tentatives';
 }
-
 ?>
 
 <!DOCTYPE html>
