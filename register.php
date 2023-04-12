@@ -43,7 +43,6 @@ $erreur = '';
             <input type="text" placeholder="Prénom" name="f-name">
             <input type="mail" placeholder="Mail" name="mail">
             <input type="password" placeholder="Mot de passe" name="password">
-            <input type="text" placeholder="Question : <?= $num1 ?> + <?= $num2 ?> = ?" name="secu">
             <button type="submit">Envoyer</button>
             <p style="color: red;"><?= $erreur ?></p>
             <a href="login.php">Login</a>
